@@ -44,6 +44,8 @@ class SignUp extends React.Component<any, any> {
       .then(res => res.json())
       .then(data => {
         this.setState({ disabled: false });
+        console.log(data["access_token"]);
+        // sessionStorage.setItem("jwt_token", data["access_token"]);
         console.log(data);
       })
       .catch(error => {

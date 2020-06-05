@@ -41,7 +41,9 @@ class Login extends React.Component<any, any> {
     fetch("/auth/login", init)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        data = JSON.parse(data);
+        sessionStorage.setItem("jwt_token", data["access_token"]);
+        // localStorage.setItem("jwt_token", data["access_token"]);
         this.setState({ disabled: false });
         history.push("/home");
       })

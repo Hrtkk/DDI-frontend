@@ -37,11 +37,15 @@ class Connect extends React.Component<any, any> {
       DatabaseName: this.state.DatabaseName
     };
     // TODO: send the object via fetch
+    const token = sessionStorage.getItem("jwt_token");
+    console.log("token is", token);
     const data = DBConfig;
     const init = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify(data)
     };
@@ -62,6 +66,9 @@ class Connect extends React.Component<any, any> {
 
   handleClickOpen() {
     this.setState({ show: true });
+    // const token = sessionStorage.getItem("jwt_token");
+    // const token1 = localStorage.getItem("jwt_token");
+    // console.log("token is", token, token1);
   }
 
   handleInputChange(event: any) {
